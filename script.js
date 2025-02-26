@@ -6,7 +6,7 @@ const todoList = document.getElementById("todo-list");
 
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 tasks.forEach((task)=>renderTasks(task))
-addTaskButton.addEventListener('click',()=>{
+function event() {
     const taskText = todoInput.value.trim();
     if (taskText==="") {
         return;
@@ -21,6 +21,12 @@ addTaskButton.addEventListener('click',()=>{
     renderTasks(newTask)
     todoInput.value = ""; //clear input
 
+}
+addTaskButton.addEventListener('click', event)
+todoInput.addEventListener("keypress",(e)=>{
+    if (e.key === "Enter") {
+        event();
+    }
 })
 
 function saveTasks() {
